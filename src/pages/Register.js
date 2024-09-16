@@ -27,49 +27,41 @@ function Register() {
   const [matchValida, setMatchValida] = useState(false);
   const [matchfoco, setMatchFoco] = useState(false);
 
-  const [errMsg, setErrMsg] = useState("");
-  const [success, setSuccess] = useState(false);
-
-  useEffect(() => {
-    nomeRef.current.focus();
-  }, []);
-
-  useEffect(() => {
-    const result = USER_REGEX.test(nome);
-    console.log(result);
-    console.log(nome);
-    setNomeValido(result);
-  }, [nome]);
-
   return (
     <>
-      <h1>Faça o registro</h1>
-      <form>
-        <div>
-          <label htmlFor="nome">Nome </label>
-          <input
-            type="text"
-            name="nome"
-            id="nome"
-            placeholder="Nome"
-            required
-            onChange={(e) => setNome(e.target.value)}
-          ></input>
-        </div>
+      <section>
+        <p
+          ref={errRef}
+          className={errMsg ? "errmsg" : "offscreen"}
+          aria-live="assertive"
+        ></p>
+        <h1>Faça o registro</h1>
+        <form>
+          <div>
+            <label htmlFor="nome">Nome </label>
+            <input
+              type="text"
+              id="nome"
+              placeholder="Nome"
+              ref={nomeRef}
+              required
+              onChange={(e) => setNome(e.target.value)}
+            ></input>
+          </div>
 
-        <div>
-          <label htmlFor="senha">Senha </label>
-          <input
-            type="password"
-            name="senha"
-            id="senha"
-            placeholder="Senha"
-            required
-            onChange={(e) => setSenha(e.target.value)}
-          ></input>
-        </div>
-        <input type="submit" value={"Enviar"}></input>
-      </form>
+          <div>
+            <label htmlFor="senha">Senha </label>
+            <input
+              type="password"
+              id="senha"
+              placeholder="Senha"
+              required
+              onChange={(e) => setSenha(e.target.value)}
+            ></input>
+          </div>
+          <input type="submit" value={"Enviar"}></input>
+        </form>
+      </section>
     </>
   );
 }
