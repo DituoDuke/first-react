@@ -1,7 +1,11 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect, useContext } from "react";
+import AuthContext from "../context/AuthProvider";
 import { Link } from "react-router-dom";
+import axios from "../api/axios";
+const LOGIN_URL = "/auth";
 
 const Login = () => {
+  const { setAuth } = useContext(AuthContext);
   const userRef = useRef();
   const errRef = useRef();
 
@@ -20,12 +24,20 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(nome, senha);
-
-    if (nome === "Tito" && senha === "123Teste") {
-      localStorage.setItem("nome", nome);
+    try {
+      const response = await axios.post(
+        LOGIN_URL,
+        { nome, senha },
+        {
+          headers: { "Content-Type": "aplication/json" },
+          withCredentials: true,
+        }
+      );
+      console.log(response?.data);
+      setNome("");
+      setSenha("");
       setSuccess(true);
-    }
+    } catch (err) {}
   };
   return (
     <>
