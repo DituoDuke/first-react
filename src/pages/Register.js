@@ -27,6 +27,20 @@ function Register() {
   const [matchValida, setMatchValida] = useState(false);
   const [matchfoco, setMatchFoco] = useState(false);
 
+  const [errMsg, setErrMsg] = useState("");
+  const [success, setSuccess] = useState(false);
+
+  useEffect(() => {
+    nomeRef.current.focus();
+  }, []);
+
+  useEffect(() => {
+    const result = USER_REGEX.test(nome);
+    console.log(result);
+    console.log(nome);
+    setNomeValido(result);
+  }, [nome]);
+
   return (
     <>
       <h1>Faça o registro</h1>
