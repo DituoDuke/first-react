@@ -10,10 +10,11 @@ function App() {
       <Router>
         <div>
           <Link to={"/"}>Home </Link>
-          <Link to={"login"}>Login</Link>
+          <Link to={"/login"}>Login</Link>
+          <Link to={"/register"}>Registro</Link>
         </div>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" exact element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="register" element={<Register />} />
           <Route path="*" element={<h1>404 PAGE NOT FOUND</h1>} />

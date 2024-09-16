@@ -4,6 +4,7 @@ function Register() {
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
+
   return (
     <>
       <h1>Faça o registro</h1>
