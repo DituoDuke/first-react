@@ -5,7 +5,7 @@ import {
   faInfoCircle,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import userEvent from "@testing-library/user-event";
+import { Link } from "react-router-dom";
 
 //Constante que usaremos para defenir o necessario para o campo de usuario (minimo 3 digitos e maximo 23) sendo limitado pelos caracteres especificados a baixo
 const USER_REGEX = /^[a-zA-Z][a-zA-Z0-9-_]{3,23}$/;
@@ -26,7 +26,7 @@ function Register() {
 
   const [matchSenha, setMatchSenha] = useState("");
   const [matchValida, setMatchValida] = useState(false);
-  const [matchfoco, setMatchFoco] = useState(false);
+  const [matchFoco, setMatchFoco] = useState(false);
 
   const [errMsg, setErrMsg] = useState("");
   const [success, setSuccess] = useState(false);
@@ -49,6 +49,10 @@ function Register() {
     setErrMsg("");
   }, [nome, senha, matchSenha]);
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+  };
+
   return (
     <>
       <section>
@@ -60,7 +64,7 @@ function Register() {
           {errMsg}
         </p>
         <h1>Faça o registro</h1>
-        <form>
+        <form onSubmit={handleSubmit}>
           <div>
             <label htmlFor="nome">
               Nome:
@@ -84,30 +88,104 @@ function Register() {
               onBlur={() => setNomeFoco(false)}
               onChange={(e) => setNome(e.target.value)}
             ></input>
+            <p
+              id="uidnote"
+              className={
+                nomeFoco && nome && !nomeValido ? "instructions" : "hide"
+              }
+            >
+              <FontAwesomeIcon icon={faInfoCircle} /> 4 a 24 caracteres <br />
+              Precisa começar com uma letra <br />
+              Letras, numaros, sinais de separação (- e _) são permitidos
+            </p>
           </div>
-          <p
-            id="uidnote"
-            className={
-              nomeFoco && nome && !nomeValido ? "instructions" : "hide"
-            }
-          >
-            <FontAwesomeIcon icon={faInfoCircle} /> 4 a 24 caracteres <br />
-            Precisa começar com uma letra <br />
-            Letras, numaros, sinais de separação (- e _) são permitidos
-          </p>
-
           <div>
-            <label htmlFor="senha">Senha </label>
+            <label htmlFor="senha">
+              Senha:
+              <FontAwesomeIcon
+                icon={faCheck}
+                className={senhaValida ? "valid" : "hide"}
+              />
+              <FontAwesomeIcon
+                icon={faTimes}
+                className={senhaValida || !senha ? "hide" : "invalid"}
+              />
+            </label>
             <input
               type="password"
               id="senha"
-              placeholder="Senha"
-              required
               onChange={(e) => setSenha(e.target.value)}
-            ></input>
+              value={senha}
+              required
+              placeholder="Senha"
+              aria-invalid={senhaValida ? "false" : "true"}
+              aria-describedby="pwdnote"
+              onFocus={() => setSenhaFoco(true)}
+              onBlur={() => setSenhaFoco(false)}
+            />
+            <p
+              id="pwdnote"
+              className={senhaFoco && !senhaValida ? "instructions" : "hide"}
+            >
+              <FontAwesomeIcon icon={faInfoCircle} />
+              Entre 8 a 24 caracteres
+              <br />
+              Deve incluir pelo menos uma letra minuscula, maiuscula, um numero
+              e um character especial
+              <br />
+              Caracteres especiais pemitidos:{" "}
+              <span aria-label="exclamation mark">!</span>{" "}
+              <span aria-label="at symbol">@</span>{" "}
+              <span aria-label="hashtag">#</span>{" "}
+              <span aria-label="dollar sign">$</span>{" "}
+              <span aria-label="percent">%</span>
+            </p>
           </div>
-          <input type="submit" value={"Enviar"}></input>
+          <div>
+            <label htmlFor="confirmSenha">
+              Confirmar senha:
+              <FontAwesomeIcon
+                icon={faCheck}
+                className={matchValida && matchSenha ? "valid" : "hide"}
+              />
+              <FontAwesomeIcon
+                icon={faTimes}
+                className={matchValida || !matchSenha ? "hide" : "invalid"}
+              />
+            </label>
+            <input
+              type="password"
+              id="confirmSenha"
+              onChange={(e) => setMatchSenha(e.target.value)}
+              value={matchSenha}
+              required
+              placeholder="Confirmar Senha"
+              aria-invalid={matchValida ? "false" : "true"}
+              aria-describedby="confirmnote"
+              onFocus={() => setMatchFoco(true)}
+              onBlur={() => setMatchFoco(false)}
+            />
+            <p
+              id="confirmnote"
+              className={matchFoco && !matchValida ? "instructions" : "hide"}
+            >
+              <FontAwesomeIcon icon={faInfoCircle} />
+              Precisa ser igual a senha anterior
+            </p>
+          </div>
+
+          <button
+            disabled={
+              !nomeValido || !senhaValida || !matchValida ? true : false
+            }
+          >
+            Inscrever-se
+          </button>
         </form>
+        <p>
+          Já possui uma conta?
+          <Link to={"/login"}> Entrar</Link>
+        </p>
       </section>
     </>
   );
