@@ -34,7 +34,9 @@ function Register() {
           ref={errRef}
           className={errMsg ? "errmsg" : "offscreen"}
           aria-live="assertive"
-        ></p>
+        >
+          {errMsg}
+        </p>
         <h1>Faça o registro</h1>
         <form>
           <div>
