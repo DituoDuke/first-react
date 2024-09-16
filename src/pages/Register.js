@@ -62,7 +62,15 @@ function Register() {
         <h1>Faça o registro</h1>
         <form>
           <div>
-            <label htmlFor="nome">Nome </label>
+            <label htmlFor="nome">
+              Nome:
+              <span className={nomeValido ? "valid" : "hide"}>
+                <FontAwesomeIcon icon={faCheck} />
+              </span>
+              <span className={nomeValido || !nome ? "hide" : "invalid"}>
+                <FontAwesomeIcon icon={faTimes} />
+              </span>
+            </label>
             <input
               type="text"
               id="nome"
@@ -80,11 +88,10 @@ function Register() {
           <p
             id="uidnote"
             className={
-              nomeFoco && nome && !nomeValido ? "instructions" : "offscreen"
+              nomeFoco && nome && !nomeValido ? "instructions" : "hide"
             }
           >
-            <FontAwesomeIcon icon={faInfoCircle} />
-            4 a 24 caracteres <br />
+            <FontAwesomeIcon icon={faInfoCircle} /> 4 a 24 caracteres <br />
             Precisa começar com uma letra <br />
             Letras, numaros, sinais de separação (- e _) são permitidos
           </p>
