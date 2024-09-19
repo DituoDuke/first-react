@@ -3,15 +3,14 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import Header from "./components/Header";
 
 function App() {
   return (
     <div className="App">
       <Router>
         <div>
-          <Link to={"/"}>Home </Link>
-          <Link to={"/login"}>Login</Link>
-          <Link to={"/register"}>Registro</Link>
+          <Header />
         </div>
         <Routes>
           <Route path="/" exact element={<Home />} />
