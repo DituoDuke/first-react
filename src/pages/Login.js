@@ -14,6 +14,9 @@ const Login = () => {
   const [errMsg, setErrMsg] = useState("");
   const [success, setSuccess] = useState(false);
 
+  const tempUser = "tito",
+    tempSenha = "1234";
+
   useEffect(() => {
     userRef.current.focus();
   }, []);
@@ -23,7 +26,7 @@ const Login = () => {
   }, [nome, senha]);
 
   const handleSubmit = async (e) => {
-    if (nome === "Tito" && senha === "1234") {
+    if (nome === tempUser && senha === tempSenha) {
       localStorage.setItem("nome", "Tito");
       window.open("/", "_self");
     }
