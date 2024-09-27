@@ -7,17 +7,17 @@ const Header = () => {
     return (
       <>
         <header className="App-header">
-          <Link to={"/"}>
-            <button>Home</button>
-          </Link>
-          <button
-            onClick={() => {
-              localStorage.removeItem("nome");
-              window.open("/login", "_self");
-            }}
-          >
-            Logout
-          </button>
+          <div className="inner-header">
+            <button onClick={() => (window.location = "/")}>Home</button>
+            <button
+              onClick={() => {
+                localStorage.removeItem("nome");
+                window.open("/login", "_self");
+              }}
+            >
+              Logout
+            </button>
+          </div>
         </header>
       </>
     );

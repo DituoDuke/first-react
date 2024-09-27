@@ -6,9 +6,12 @@ const Home = () => {
     return (
       <>
         <h1>Bem Vindo {nome}</h1>
-        <Link to={"/games"}>
+        <button
+          onClick={() => (window.location = "/games")}
+          style={{ borderRadius: 10 + "px", width: 200 + "px" }}
+        >
           <h3>Jogos</h3>
-        </Link>
+        </button>
       </>
     );
   } else {

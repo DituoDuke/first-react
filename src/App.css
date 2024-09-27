@@ -1,19 +1,27 @@
 body {
   margin: 0;
+  background-color: #d8d4cc;
 }
 .App {
   text-align: center;
 }
 
+.link {
+  color: white;
+  text-decoration: none;
+}
+
 .App-header {
   background-color: #282c34;
-  min-height: 7.5vh;
+  height: 80px;
+  width: 100%;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+}
+.inner-header {
+  width: 1000px;
+  height: 100%;
+  display: flex;
+  margin: 0 auto;
 }
 
 .App-link {
@@ -26,21 +34,77 @@ body {
 
 .game-container {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.caixas {
-  display: flex;
   justify-content: space-around;
+  padding: 20px;
   flex-wrap: wrap;
-  width: 100%;
 }
 
 .caixa {
   border: 1px solid #ccc;
-  padding: 10px;
+  padding: 20px;
+  width: 200px;
+  text-align: center;
   margin: 10px;
-  flex: 1 1 200px; /* Permite que as caixas sejam responsivas */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.caixa h3 {
+  margin-bottom: 10px;
+}
+
+.caixa div {
+  display: block;
+  margin-bottom: 10px;
+}
+
+button {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  background-color: #34979e;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background-color: #216469;
+}
+
+.dicas-text {
+  color: black;
+  cursor: pointer;
+}
+
+.dicas-container {
+  justify-content: center;
+  display: flex;
+  margin: auto;
+  padding: auto;
+  text-shadow: 0.5px 0.5px 1px black;
+}
+
+.table {
+  margin: auto;
+}
+
+.bloco {
+  height: 50px;
+  width: 50px;
+}
+
+.azul {
+  background-color: blue;
+}
+
+.verm {
+  background-color: red;
+}
+
+.preto {
+  background-color: black;
+}
+.ul {
+  display: inline-block;
+  text-align: left;
 }

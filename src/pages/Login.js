@@ -14,7 +14,7 @@ const Login = () => {
   const [errMsg, setErrMsg] = useState("");
   const [success, setSuccess] = useState(false);
 
-  const tempUser = "Tito",
+  const tempUser = ["Tito", "Luiz"],
     tempSenha = "1234";
 
   useEffect(() => {
@@ -26,7 +26,8 @@ const Login = () => {
   }, [nome, senha]);
 
   const handleSubmit = async (e) => {
-    if (nome === tempUser && senha === tempSenha) {
+    if (nome === tempUser[0] || (nome === tempUser[1] && senha === tempSenha)) {
+      localStorage.setItem("comprasmes", false);
       localStorage.setItem("nome", nome);
       window.open("/", "_self");
     }
@@ -62,7 +63,7 @@ const Login = () => {
           >
             {errMsg}
           </p>
-          <h1>Faça o Login</h1>
+          <h1>Faça o Login {success}</h1>
 
           <form onSubmit={handleSubmit}>
             <div>
