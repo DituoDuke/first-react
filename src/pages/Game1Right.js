@@ -81,7 +81,7 @@ function Game1Right() {
       </div>
 
       <ol className="ul">
-        <hr>Porque comprar:</hr>
+        <h3>Porque comprar:</h3>
         <li>
           Alta eficiência de combustível, com consumo médio de 6 km/l em
           estrada, utilizando tecnologia <strong>Bosch</strong> de injeção
