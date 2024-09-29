@@ -62,6 +62,7 @@ function Game1() {
 
     if (isCorrect) {
       alert("Parabéns! Tudo está correto.");
+      window.open("/games/compras-do-mes/boa", "_self");
     } else {
       localStorage.setItem("comprasmes", true);
     }
